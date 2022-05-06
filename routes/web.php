@@ -18,9 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 
 Route::group(['prefix' => 'home/etudient','as'=>'home.etudient.'],function () {
@@ -31,3 +30,9 @@ Route::group(['prefix' => 'home/etudient','as'=>'home.etudient.'],function () {
 Route::resource('annonces', App\Http\Controllers\AnnonceController::class);
 
 
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'homeadmin'])->name('admin.home')->middleware('is_admin');
